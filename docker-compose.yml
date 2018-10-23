@@ -10,7 +10,7 @@ services:
       - INFLUXDB_ADMIN_USER=admin
       - INFLUXDB_ADMIN_PASSWORD=admin
     volumes:
-      - /Users/pivotal/workspace/concourse/influxdbData:/var/lib/influxdb
+      - influxdb-data:/var/lib/influxdb
 
   grafana:
     image: grafana/grafana
