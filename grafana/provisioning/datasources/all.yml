@@ -1,0 +1,12 @@
+datasources:
+- name: 'influxdb1'
+  type: 'influxdb'
+  database: 'db'
+  access: 'proxy'
+  password: 'admin'
+  user: 'admin'
+  org_id: 1
+  url: 'http://influxdb:8086'
+  is_default: true
+  version: 1
+  editable: true

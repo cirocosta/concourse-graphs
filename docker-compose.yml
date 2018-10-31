@@ -2,9 +2,12 @@ version: '3'
 
 services:
   influxdb:
+    container_name: influxdb
     image: influxdb
+    networks:
+      - concourse_default
     ports:
-      - "8086:8086"
+      - 8086:8086
     environment:
       - INFLUXDB_DB=db
       - INFLUXDB_ADMIN_USER=admin
@@ -13,6 +16,16 @@ services:
       - influxdb-data:/var/lib/influxdb
 
   grafana:
-    image: grafana/grafana
+    container_name: grafana
+    build: ./grafana
+    networks:
+      - concourse_default
     ports:
-      - "3000:3000"
+      - 3000:3000
+
+networks:
+  concourse_default:
+    external: true
+ 
+volumes:
+  influxdb-data:
