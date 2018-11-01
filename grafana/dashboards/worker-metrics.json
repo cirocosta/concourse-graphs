@@ -24,7 +24,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
-      "description": "Count of errors reported through `log.Error` messages in ATC code.",
+      "description": "Shows the per-ATC number of error status codes returned in the responses.",
       "fill": 1,
       "gridPos": {
         "h": 9,
@@ -32,7 +32,7 @@
         "x": 0,
         "y": 0
       },
-      "id": 6,
+      "id": 8,
       "legend": {
         "alignAsTable": false,
         "avg": false,
@@ -43,13 +43,13 @@
         "total": false,
         "values": false
       },
-      "lines": false,
+      "lines": true,
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
       "percentage": false,
-      "pointradius": 2,
-      "points": true,
+      "pointradius": 5,
+      "points": false,
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
@@ -57,15 +57,28 @@
       "steppedLine": false,
       "targets": [
         {
+          "alias": "$tag_route",
           "groupBy": [
             {
               "params": [
-                "message"
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "status"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "route"
               ],
               "type": "tag"
             }
           ],
-          "measurement": "error message metrics",
+          "measurement": "http response time",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -77,19 +90,29 @@
                   "value"
                 ],
                 "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
               }
             ]
           ],
-          "tags": []
+          "tags": [
+            {
+              "key": "status",
+              "operator": "=",
+              "value": "500"
+            }
+          ]
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Error count",
+      "title": "HTTP Status Codes",
       "tooltip": {
         "shared": true,
-        "sort": 2,
+        "sort": 0,
         "value_type": "individual"
       },
       "type": "graph",
@@ -236,6 +259,108 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "datasource": null,
+      "description": "Count of errors reported through `log.Error` messages in ATC code.",
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 9
+      },
+      "id": 6,
+      "legend": {
+        "alignAsTable": false,
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": false,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 2,
+      "points": true,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "message"
+              ],
+              "type": "tag"
+            }
+          ],
+          "measurement": "error message metrics",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Error count",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 0,
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ]
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
       "datasource": "influxdb1",
       "description": "Aggregate state of workers over time.\n\nFor more information about what each state means, check out [worker internals](https://concourse-ci.org/worker-internals.html#worker-lifecycle).",
       "fill": 1,
@@ -243,7 +368,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 9
+        "y": 18
       },
       "id": 2,
       "legend": {
@@ -599,5 +724,5 @@
   "timezone": "",
   "title": "Worker metrics",
   "uid": "RLbr0axmk",
-  "version": 3
+  "version": 4
 }
