@@ -293,7 +293,14 @@
       "steppedLine": false,
       "targets": [
         {
+          "alias": "$tag_message",
           "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
             {
               "params": [
                 "message"
@@ -301,7 +308,7 @@
               "type": "tag"
             }
           ],
-          "measurement": "error message metrics",
+          "measurement": "error-messages",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -313,6 +320,10 @@
                   "value"
                 ],
                 "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
               }
             ]
           ],
@@ -322,7 +333,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Error count",
+      "title": "Error logs count",
       "tooltip": {
         "shared": true,
         "sort": 2,
@@ -685,7 +696,7 @@
       }
     }
   ],
-  "refresh": false,
+  "refresh": "5s",
   "schemaVersion": 16,
   "style": "dark",
   "tags": [],
@@ -724,5 +735,5 @@
   "timezone": "",
   "title": "Worker metrics",
   "uid": "RLbr0axmk",
-  "version": 4
+  "version": 5
 }
