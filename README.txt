@@ -67,3 +67,8 @@ TODO
 			network
 			applications
 	
+
+RESOURCES:
+	http://www.brendangregg.com/USEmethod/use-linux.html
+	https://london.my-netdata.io/#;theme=slate;help=true
+
