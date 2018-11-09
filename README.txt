@@ -1,12 +1,69 @@
-1. Clone `github.com/concourse/concourse
+USAGE
 
-2. Modify `docker-compose.yml` to have an InfluxDB endpoint registered
+	1. Clone `github.com/concourse/concourse
 
-    - CONCOURSE_INFLUXDB_URL=http://influxdb:8086
-    - CONCOURSE_INFLUXDB_DATABASE=db
-    - CONCOURSE_INFLUXDB_USERNAME=admin
-    - CONCOURSE_INFLUXDB_PASSWORD=admin
+	2. Modify `docker-compose.yml` to have an InfluxDB endpoint registered
 
-3. Raise concourse up
+	    - CONCOURSE_INFLUXDB_URL=http://influxdb:8086
+	    - CONCOURSE_INFLUXDB_DATABASE=db
+	    - CONCOURSE_INFLUXDB_USERNAME=admin
+	    - CONCOURSE_INFLUXDB_PASSWORD=admin
 
-4. Run this repo's docker-compose.yml
+	3. Raise concourse up
+
+	4. Run this repo's docker-compose.yml
+
+
+TODO
+	Separate folders:
+		CONCOURSE WORKER
+			overall
+		CONCOURSE WEB
+			overall
+		MACHINE
+			overall
+				quick view of generic metrics across most of the
+				resources in the system.
+
+				uptime
+					so we can know for how long the machine
+					has been up
+
+				number of cpus
+
+				cpu
+					u: total utilization
+					s: runq len
+					e: - should we keep track of this?
+				memory
+					u: total - available
+					s: paging?
+					e: - should we track this? 
+				net
+					u: throughput
+					s: queueing
+					e: drops/overruns ?
+				disk
+					u: total disk used
+					u: % of time servicing IO
+					s: wait queue length
+					e: device errors
+				procs
+					u: per-state number of procs
+
+			cpu
+				In-depth metrics related to CPU.
+
+				u: all cpu distrs (iowait,user,system,irq,...)
+					remark: Usually, constant high `iowait` indicate that disks
+						are a bottleneck.
+					remark: Usually, constant high `softirq` might indicate 
+						problems with network drivers.
+				s: load (1m,5m,15m)
+				s: scheduler latency
+				s: (maybe) context switches?
+			memory
+			disk
+			network
+			applications
+	
