@@ -25,6 +25,10 @@ TODO
 				quick view of generic metrics across most of the
 				resources in the system.
 
+				instance-group
+					tag that identifies the type of machine that
+					this one pertains to.
+
 				uptime
 					so we can know for how long the machine
 					has been up
@@ -71,4 +75,5 @@ TODO
 RESOURCES:
 	http://www.brendangregg.com/USEmethod/use-linux.html
 	https://london.my-netdata.io/#;theme=slate;help=true
+	https://www.percona.com/blog/2017/08/04/saturation-metrics-in-pmm-120/
 
